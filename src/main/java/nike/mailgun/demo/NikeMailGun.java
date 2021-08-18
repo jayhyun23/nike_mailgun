@@ -27,7 +27,7 @@ public class NikeMailGun implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        System.out.println("### Mailgun Start ###");
         try {
             sendToMailList = getSendListByFile();
             for(int index =0 ;index < sendToMailList.size();){
@@ -45,11 +45,11 @@ public class NikeMailGun implements CommandLineRunner {
             System.out.println("### Mailgun : sendMessageByConfiguredProviders Error="+ e);
         }
 
-
+        System.out.println("### Mailgun End ###");
     }
 
     private static List<String> getSendListByFile() {
-        Path path = Paths.get("C:\\fileTest5.txt");
+        Path path = Paths.get("C:\\Users\\Jay\\Documents\\test1.csv");
         Charset charset = Charset.forName("UTF-8");
         List<String> list = new ArrayList<>();
         try {

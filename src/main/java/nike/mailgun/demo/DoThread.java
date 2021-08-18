@@ -22,7 +22,7 @@ public class DoThread {
         for(String data : to){
             System.out.println(Thread.currentThread().getName() +" => " + data);
         }
-        for(String target : to){
+        /*for(String target : to){
             try{
                 ClientResponse clientResponse = send(target);
                 if (clientResponse.getStatusInfo().getStatusCode() != 200) {
@@ -32,7 +32,7 @@ public class DoThread {
                 System.out.println("### Mailgun : https Error="+ e);
             }
 
-        }
+        }*/
     }
 
     public ClientResponse send(String target) {
@@ -44,7 +44,6 @@ public class DoThread {
         formData.add("to", target);
         formData.add("subject", title);
         formData.add("template", "customer_info");
-        //formData.add("h:X-Mailgun-Variables", "{"test": "test"}");
         return webResource.type(MediaType.APPLICATION_FORM_URLENCODED).
                 post(ClientResponse.class, formData);
     }
