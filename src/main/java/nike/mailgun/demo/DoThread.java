@@ -19,20 +19,22 @@ public class DoThread {
 
     @Async("executor")
     public void run(List<String> to){
-        for(String data : to){
+        /*for(String data : to){
             System.out.println(Thread.currentThread().getName() +" => " + data);
-        }
-        /*for(String target : to){
+        }*/
+        for(String target : to){
             try{
                 ClientResponse clientResponse = send(target);
-                if (clientResponse.getStatusInfo().getStatusCode() != 200) {
+                if (clientResponse.getStatusInfo().getStatusCode() == 200) {
+                    System.out.println("Success Taget Eamil = " + target);
+                }else {
                     System.out.println("Fail Taget Eamil = " + target);
                 }
             }catch (Exception e) {
-                System.out.println("### Mailgun : https Error="+ e);
+                System.out.println("### Mailgun : https Error = "+ e + " Fail Taget Eamil = " + target);
             }
 
-        }*/
+        }
     }
 
     public ClientResponse send(String target) {

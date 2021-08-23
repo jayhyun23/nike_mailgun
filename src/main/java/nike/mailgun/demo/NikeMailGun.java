@@ -17,7 +17,7 @@ import java.util.List;
 public class NikeMailGun implements CommandLineRunner {
 
     static List<String> sendToMailList = new ArrayList<>();
-    static final int MAX_LIMIT = 1000;
+    static final int MAX_LIMIT = 3000;
 
     @Resource DoThread doThread;
 
@@ -30,6 +30,7 @@ public class NikeMailGun implements CommandLineRunner {
         System.out.println("### Mailgun Start ###");
         try {
             sendToMailList = getSendListByFile();
+            System.out.println("sendToMailList Size() = "  + sendToMailList.size());
             for(int index =0 ;index < sendToMailList.size();){
                 int limitSize = index + MAX_LIMIT;
                 if (limitSize > sendToMailList.size()) {
@@ -49,14 +50,14 @@ public class NikeMailGun implements CommandLineRunner {
     }
 
     private static List<String> getSendListByFile() {
-        Path path = Paths.get("C:\\Users\\Jay\\Documents\\test1.csv");
+        Path path = Paths.get("C:\\Users\\Jay\\Desktop\\이메일_20210819\\이메일_20210819_14_1.csv");
         Charset charset = Charset.forName("UTF-8");
         List<String> list = new ArrayList<>();
         try {
             for(String line : Files.readAllLines(path, charset) ){
-                for (String sentence : line.split(",")){
-                    list.add(sentence);
-                }
+                //for (String sentence : line.split(",")){
+                    list.add(line);
+                //}
             }
         }catch (IOException e){
             e.printStackTrace();
